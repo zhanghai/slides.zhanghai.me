@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Bash 入门漫谈</title>
+
+		<meta name="description" content="描述">
+		<meta name="author" content="张海">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="custom/css/theme/monogatari.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : reveal.js/'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section class="has-white-background" data-background="#f8f8f8">
+
+					<section data-autoslide="500">
+						<br>
+						<h3>白齣</h3>
+					</section>
+
+					<section>
+						<br><br><br>
+						<h1>Bash<br>入门漫谈</h1>
+						<br><br>
+						<p>张海　二〇一六·八</p>
+					</section>
+				</section>
+
+				<section class="has-dark-background" data-background="#606090">
+
+					<section data-autoslide="500">
+						<br>
+						<h3>楝齣</h3>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>为什么</h2>
+						<br><br><br><br><br>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>日用</h2>
+						<br><br><br><br><br>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>普遍</h2>
+						<br><br><br><br><br>
+						<aside class="notes">
+							sh/bash 最基础的环境。
+						</aside>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>强大</h2>
+						<br><br><br><br><br>
+						<aside class="notes">
+							协作。
+							Unix 命令、python、node。
+						</aside>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>便利</h2>
+						<br><br><br><br><br>
+						<aside class="notes">
+							批量重命名。
+							随时打出，一行解决。
+						</aside>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>举例</h2>
+						<br><br><br><br><br>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2><a href="https://github.com/DreaminginCodeZH/resume" target="_blank" style="color: inherit;">简历自动部署</a></h2>
+						<br><br><br><br><br>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2><a href="https://github.com/DreaminginCodeZH/zh-conf-backup" target="_blank" style="color: inherit;">配置文件自动备份</a></h2>
+						<br><br><br><br><br>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2><a href="https://github.com/DreaminginCodeZH/Douya/blob/master/upload-to-releases.sh" target="_blank" style="color: inherit;">豆芽CI自动上传</a></h2>
+						<br><br><br><br><br>
+					</section>
+				</section>
+
+				<section data-background="#ffa020">
+
+					<section data-autoslide="500">
+						<br>
+						<h3>黄齣</h3>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>一切皆字符串</h2>
+						<br><br><br><br>
+						<p>好吧，除了字符串数组。</p>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>逻辑运算</h2>
+						<br><br><br>
+						<p class="fragment"><code>if test '1' -lt '0'</code></p>
+						<p><code>if [[ 1 -lt 0 ]]</code></p>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>算数运算</h2>
+						<br><br><br>
+						<p class="fragment"><code>((++a))</code></p>
+						<p><code>a="$(expr "${a}" + 1)"</code></p>
+						<aside class="notes" data-markdown>
+							[expr](http://tldp.org/LDP/abs/html/moreadv.html#EXPRREF)
+							[(())](http://tldp.org/LDP/abs/html/dblparens.html)
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="#d01010">
+
+					<section data-autoslide="500">
+						<br>
+						<h3>赤齣</h3>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>「　　」</h2>
+						<br><br><br><br>
+						<p>用于划分参数。</p>
+						<aside class="notes">
+							空白和引号
+						</aside>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>Unix工具</h2>
+						<br><br><br><br>
+						<p>做一件事，做好它。</p>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>接口</h2>
+						<br><br><br><br>
+						<p><code>int main(int argc, char *argv[]);</code></p>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>分隔</h2>
+						<br><br><br><br>
+						<p>一个或多个空白字符，立即分隔。</p>
+					</section>
+
+					<section>
+						<pre>$ echo These are	four arguments
+<span class="fragment">These are four arguments</span></pre>
+						<br>
+						<pre class="fragment">$ printf '%s\n' These are	four arguments
+These
+are
+four
+arguments</pre>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>连接</h2>
+						<br><br><br><br>
+						<p>没有空白字符，则是一体。</p>
+					</section>
+
+					<section>
+						<pre>$ printf '%s\n' "While	this"_is_'one'
+<span class="fragment">While	this_is_one</span></pre>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>引号</h2>
+						<br><br><br><br>
+						<p>只为连接空白，不影响命令调用。</p>
+					</section>
+
+					<section>
+						<pre>$ 'echo' echo is executed
+<span class="fragment">echo is executed</span></pre>
+						<br>
+						<pre class="fragment">$ "e"c'h'\o echo is executed
+echo is executed</pre>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>当心</h2>
+						<br><br><br><br><br>
+					</section>
+
+					<section>
+						<pre>$ rm -rf /usr/lib/nvidia-current/xorg/xorg</pre>
+						<br>
+						<pre class="fragment">$ rm -rf /usr /lib/nvidia-current/xorg/xorg</pre>
+						<br>
+						<pre class="fragment">$ rm -rf '/usr/lib/nvidia-current/xorg/xorg'
+$ rm -rf '/usr /lib/nvidia-current/xorg/xorg'</pre>
+						<aside class="notes" data-markdown>
+							[Bumblebee](https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6)
+						</aside>
+					</section>
+
+					<section>
+						<pre>$ [[1 -lt 0]]
+<span class="fragment">bash: [[1: command not found</span></pre>
+						<br>
+						<pre class="fragment">$ '[[' 1 -lt 0 ]]
+<span class="fragment">bash: [[: command not found</span></pre>
+						<br>
+						<pre class="fragment">$ [[ 1 -lt 0 ]]; echo "$?"
+<span class="fragment">1</span></pre>
+					</section>
+
+					<section>
+						<pre>$ variable = cat is cute
+<span class="fragment">bash: variable: command not found</span></pre>
+						<br>
+						<pre class="fragment">$ variable= cat is cute
+<span class="fragment">cat: is: 没有那个文件或目录
+cat: cute: 没有那个文件或目录</span>
+<span class="fragment">
+$ variable='' cat is cute
+cat: is: 没有那个文件或目录
+cat: cute: 没有那个文件或目录</span></pre>
+						<br>
+						<pre class="fragment">$ variable=cat is cute
+<span class="fragment">bash: is: command not found</span>
+<span class="fragment">
+$ variable='cat' is cute
+bash: is: command not found</span></pre>
+					</section>
+
+					<section>
+						<pre>$ variable='cat is cute'; echo "${variable}"
+cat is cute</pre>
+					</section>
+				</section>
+
+				<section data-background="#801080">
+
+					<section data-autoslide="500">
+						<br>
+						<h3>紫齣</h3>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>替换和展开</h2>
+						<br><br><br><br>
+						<p>字面、原地替换。</p>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>变量替换<code>"${}"</code></h2>
+						<br><br><br><br>
+						<p>变量名被替换为变量的值。</p>
+						<aside class="notes" data-markdown>
+							[Parameter Substitution](http://tldp.org/LDP/abs/html/parameter-substitution.html)
+						</aside>
+					</section>
+
+					<section>
+						<pre>$ file='a simple file.txt'
+<span class="fragment">$ cat $file</span>
+<span class="fragment">cat: a: 没有那个文件或目录
+cat: simple: 没有那个文件或目录
+cat: file.txt: 没有那个文件或目录</span></pre>
+						<br>
+						<pre class="fragment">$ cat "${file}"</pre>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>命令替换<code>"$()"</code></h2>
+						<br><br><br><br>
+						<p>命令被替换为标准输出。</p>
+						<aside class="notes" data-markdown>
+							[Command Substitution](http://tldp.org/LDP/abs/html/commandsub.html)
+						</aside>
+					</section>
+
+					<section>
+						<pre>$ date
+2016年 08月 09日 星期二 16:01:33 CST
+$ printf '%s\n' $(date)
+<span class="fragment">2016年
+08月
+09日
+星期二
+16:01:54
+CST</span></pre>
+						<br>
+						<pre class="fragment">$ printf '%s\n' "$(date)"
+2016年 08月 09日 星期二 16:02:21 CST</pre>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>命令替换内的引号</code></h2>
+						<br><br><br><br>
+						<p>引号可以嵌套的语言。</p>
+					</section>
+
+					<section>
+						<pre>$ echo "$(echo "string1 string2")"</pre>
+						<br>
+						<pre class="fragment">$ version="$(git describe --long --tags | sed 's/^v//;s/-\([0-9]\+\)-g\([0-9a-f]\+\)/+\1.\2/')"</pre>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2><code>*</code>、<code>?</code> 展开</h2>
+						<br><br><br><br>
+						<p>根据已有文件展开，否则不展开。</p>
+					</section>
+
+					<section>
+						<pre>$ rm -r /
+rm: it is dangerous to operate recursively on ‘/’
+rm: use --no-preserve-root to override this failsafe</pre>
+						<br>
+						<pre class="fragment">$ rm -r /*</pre>
+						<br>
+						<pre class="fragment">$ echo /*
+/bin /boot /data /dev /etc /home /lib /lib64 /lost+found /mnt /opt /proc /root /run /sbin /srv /sys /tmp /usr /var
+<span class="fragment">
+$ rm -r /bin /boot /data /dev /etc /home /lib /lib64 /lost+found /mnt /opt /proc /root /run /sbin /srv /sys /tmp /usr /var</span></pre>
+					</section>
+
+					<section>
+						<pre>$ ls
+$ echo *
+*</pre>
+						<br>
+						<pre class="fragment">$ find -iname '*.md'</pre>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2><code>{,}</code> 展开</h2>
+						<br><br><br><br>
+ 						<p>展开当前参数为多个。</p>
+					</section>
+
+					<section>
+						<pre>$ echo script{,.sh,.csh}
+<span class="fragment">script script.sh script.csh</span></pre>
+					</section>
+				</section>
+
+				<section data-background="#2090e0">
+
+					<section data-autoslide="500">
+						<br>
+						<h3>青齣</h3>
+					</section>
+
+					<section>
+						<br><br><br><br><br><br>
+						<h2>参考资源</h2>
+						<br><br><br><br><br>
+					</section>
+
+					<section>
+						<br><br><br><br>
+						<h2>Advanced Bash-Scripting Guide</h2>
+						<br><br><br>
+ 						<p><a href="http://www.tldp.org/LDP/abs/html/" target="_blank" style="color: inherit"><code>http://www.tldp.org/LDP/abs/html/</code></a></p>
+					</section>
+
+					<section>
+						<br><br><br><br>
+						<h2>Google<br>Shell Style<br>Guide</h2>
+						<br><br><br>
+ 						<p><a href="https://google.github.io/styleguide/shell.xml" target="_blank" style="color: inherit"><code>https://google.github.io/styleguide/shell.xml</code></a></p>
+					</section>
+
+					<section>
+						<br><br><br><br>
+						<h2>Google<br>&<br>StackOverflow</h2>
+						<br><br><br>
+ 						<p><a href="https://www.google.com" target="_blank" style="color: inherit"><code>https://www.google.com</code></a></p>
+					</section>
+				</section>
+
+				<section data-background="#403020">
+
+					<section data-autoslide="500">
+						<br>
+						<h3>黑齣</h3>
+					</section>
+
+					<section>
+						<br>
+						<h2>感谢</h2>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.js"></script>
+
+		<script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

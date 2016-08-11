@@ -1,0 +1,3 @@
+[submodule "random-musings-for-bash-beginners/reveal.js"]
+	path = random-musings-for-bash-beginners/reveal.js
+	url = https://github.com/hakimel/reveal.js.git
