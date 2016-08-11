@@ -43,7 +43,7 @@ dark-purple {
 }
 
 .reveal {
-  font-family: "FZNewShuSong-Z10", serif;
+  font-family: "FZNewShuSong-Z10", Georgia, "Songti SC", STSong, NSimSun, SimSun, serif;
   font-size: 32px;
   letter-spacing: 0.5em;
   color: #fff;
